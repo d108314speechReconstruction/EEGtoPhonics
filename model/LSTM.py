@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
-class LSTM(nn.Module) :
+class Model(nn.Module) :
     def __init__(self, hidden_dim = 6, input_dim = 14 * 5, num_layers = 5, batch_size = 30) :
         self.batch_size = batch_size
         self.num_layers = num_layers
