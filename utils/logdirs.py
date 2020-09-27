@@ -31,7 +31,7 @@ def attempt_to_restore(model, optimizer,checkpoint_dir, use_cuda):
 
     return global_step
     
- def load_checkpoint(checkpoint_path, use_cuda):
+def load_checkpoint(checkpoint_path, use_cuda):
     if use_cuda:
         checkpoint = torch.load(checkpoint_path)
     else:
