@@ -1,5 +1,14 @@
 #train 
+import torch
+from model.LSTM import Model
+from Data.dataset import dataset
+from torch.utils.data import DataLoader
+import torch.nn.parallel.data_parallel as parallel
+import torch.optim as optim
+import torch.nn as nn
+import argparse
 import os
+import time
 def train(args) :
     #prepare paths
     os.makedirs(args.checkpoint_dir, exist_ok=True)
@@ -60,7 +69,7 @@ def train(args) :
         if global_step % args.summary_step == 0:
             writer.add_scalar('{}'.format(key), loss.get_item(), global_step)
 #set args
-import argparse
+
 parser = argparse.ArgumentParser()
 parser.add_argument('--lr', type=float,default=0.001)
 parser.add_argument('--epochs',type=int, default=500000)
