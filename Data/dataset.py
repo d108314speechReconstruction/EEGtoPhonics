@@ -34,13 +34,12 @@ class dataset(Dataset):
         pathLabel = os.path.join(self.label, str(idx),'.mat')
         pathEEG = os.path.join(self.eeg, str(idx), '.mat')
         label = scipy.io.loadmat(pathLabel)
-        label = label[]
+        label = label['all_label']
+        label = torch.tensor(label, dtype=torch.cdouble)
         eeg = scipy.io.loadmat(pathEEG)
         eeg = eeg['result']
-        sample = {'label': label, 'eeg': eeg}
-
-        if self.transform:
-            sample = self.transform(sample)
+        eeg = torch.tensor(eeg, dtype=torch.cdouble)
+        sample = {'label': label.t(), 'eeg': eeg.t()}
 
         return sample
         
